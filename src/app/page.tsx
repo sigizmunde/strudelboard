@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import StrudelMusic from "@/components/StrudelMusic";
 
 export default function Home() {
   return (
@@ -60,6 +61,7 @@ export default function Home() {
             Documentation
           </a>
         </div>
+        <StrudelMusic />
       </main>
     </div>
   );
