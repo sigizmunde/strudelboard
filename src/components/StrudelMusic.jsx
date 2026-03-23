@@ -1,14 +1,12 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { repl, controls } from "@strudel.cycles/core";
 import {
   initAudioOnFirstClick,
   getAudioContext,
-  webaudioOutput,
+  webaudioOutput
 } from "@strudel.cycles/webaudio";
-
 const { note } = controls;
-// controls may be useful later; not used right now
 
 export default function StrudelMusic() {
   const schedulerRef = useRef(null);
