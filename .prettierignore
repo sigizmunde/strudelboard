@@ -1,0 +1,12 @@
+node_modules
+.next
+dist
+public
+*.lock
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+coverage
+**/*.svg
+**/*.png
+**/*.jpg
