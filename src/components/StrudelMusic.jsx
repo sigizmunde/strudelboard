@@ -8,11 +8,14 @@ import {
   samples,
   registerSynthSounds,
 } from '@strudel/webaudio';
+import { mini } from '@strudel/mini';
+
+const pattern = mini('a [b c*2]');
 
 const init = async () => {
   try {
     await initAudioOnFirstClick();
-    // await samples('github:tidalcycles/dirt-samples');
+    await samples('github:tidalcycles/dirt-samples');
     await registerSynthSounds();
     const ctx = getAudioContext();
     const { scheduler } = repl({
@@ -37,6 +40,7 @@ export default function StrudelMusic() {
       } catch {}
       setScheduler(null);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function initialize() {
@@ -65,6 +69,15 @@ export default function StrudelMusic() {
     }
   }
 
+  function startAnotherOne() {
+    try {
+      scheduler?.setPattern(pattern.note());
+      scheduler?.start();
+    } catch (err) {
+      console.warn('start failed', err);
+    }
+  }
+
   function stop() {
     try {
       scheduler?.stop();
@@ -75,7 +88,7 @@ export default function StrudelMusic() {
 
   return (
     <div>
-      <h1>Strudel Music</h1>
+      <h3>Strudel Music</h3>
       <p>Welcome to the Strudel Music component!</p>
       <div style={{ display: 'flex', gap: 8 }}>
         <button onClick={() => initialize()} disabled={scheduler}>
@@ -83,6 +96,9 @@ export default function StrudelMusic() {
         </button>
         <button onClick={start} disabled={!scheduler}>
           Start Music
+        </button>
+        <button onClick={startAnotherOne} disabled={!scheduler}>
+          Start Another Music
         </button>
         <button onClick={stop} disabled={!scheduler}>
           Stop Music
